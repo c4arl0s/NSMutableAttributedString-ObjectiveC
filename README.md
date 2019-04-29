@@ -66,3 +66,5 @@ UIButton *button;
 }
 @end
 ```
+
+![Captura de Pantalla 2019-04-28 a la(s) 21 56 08](https://user-images.githubusercontent.com/24994818/56874592-211f0e00-69f8-11e9-860f-62494570969b.png)
