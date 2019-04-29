@@ -1,7 +1,7 @@
 # NSMutableAttributedString-ObjectiveC
 NSMutableAttributedString-ObjectiveC
 
-# Change the font, font color, and font size of an UIAlertController Instance.
+# Change the font, font color, and font size of the title of an UIAlertController Instance.
 
 ``` objective-c
 //
