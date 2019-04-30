@@ -186,6 +186,7 @@ UIButton *button;
                                        widthSearchBar,
                                        heightSearchBar);
     searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
+    // It is important to asign the pointer searchBar.delegate to self, to inform that the delegate is ViewController
     searchBar.delegate = self;
     [self.view addSubview:searchBar];
 }
