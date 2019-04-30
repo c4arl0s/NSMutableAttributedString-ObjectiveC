@@ -147,4 +147,88 @@ UIButton *button;
 
 ![Captura de Pantalla 2019-04-28 a la(s) 23 00 26](https://user-images.githubusercontent.com/24994818/56875936-1cab2300-6a01-11e9-8303-e82270551400.png)
 
+# Documentation of how to hide the clear button on UISearchBar instance
+
+``` objective-c
+//
+//  ViewController.m
+//  UISearchBar-ObjectiveC
+//
+//  Created by Carlos Santiago Cruz on 4/27/19.
+//  Copyright © 2019 Carlos Santiago Cruz. All rights reserved.
+//
+
+#import "ViewController.h"
+
+@interface ViewController () <UISearchBarDelegate, UITextInputTraits>
+{
+    UISearchBar *searchBar;
+}
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configureSearchBar];
+    [self removeClearButtonFromView:searchBar];
+}
+
+- (void)configureSearchBar
+{
+    CGFloat widthSearchBar = 300;
+    CGFloat heightSearchBar = 50;
+    CGFloat abscissaCenteredSearchBar = self.view.frame.size.width/2 - widthSearchBar/2;
+    CGFloat ordinateCenteredSearchBar = self.view.frame.size.height/2 - heightSearchBar/2;
+    
+    CGRect searchBarFrame = CGRectMake(abscissaCenteredSearchBar,
+                                       ordinateCenteredSearchBar,
+                                       widthSearchBar,
+                                       heightSearchBar);
+    searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
+    searchBar.delegate = self;
+    [self.view addSubview:searchBar];
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"You did beging to editing");
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"You just write something in search bar!, it also send a message if you clicked on icon clear");
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"You just clicked the search bar cancel button");
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"You just clicked the search button, it only sends a message if there is strings in the bar");
+}
+
+- (void)removeClearButtonFromView:(UIView *)view
+{
+    if (!view)
+    {
+        return;
+    }
+    
+    for (UIView *subview in view.subviews)
+    {
+        [self removeClearButtonFromView:subview];
+    }
+    
+    if ([view conformsToProtocol:@protocol(UITextInputTraits)])
+    {
+        UITextField *textView = (UITextField *)view;
+        if ([textView respondsToSelector:@selector(setClearButtonMode:)])
+        {
+            [textView setClearButtonMode:UITextFieldViewModeNever];
+        }
+    }
+}
+
+@end
+```
 
