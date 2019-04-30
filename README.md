@@ -37,7 +37,7 @@ UIButton *button;
     button = [[UIButton alloc] initWithFrame:buttonFrame];
     [button setTitle:@"button" forState:UIControlStateNormal];
     [button setBackgroundColor:[UIColor blackColor]];
-    // target-action patter explicitly shown.
+    // target-action pattern explicitly shown.
     [button addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
